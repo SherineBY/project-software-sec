@@ -1,0 +1,6 @@
+__pycache__/
+*.log
+*.tar
+*.zip
+*.layer
+node_modules/
