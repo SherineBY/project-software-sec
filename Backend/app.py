@@ -1,36 +1,41 @@
+from flask import Flask, render_template, request, redirect, url_for
 import os
-from flask import Flask, send_from_directory
+import subprocess
 
-# Initialisation de l'application Flask
-app = Flask(__name__, static_folder="Frontend/assets", static_url_path="/assets")
+app = Flask(__name__, template_folder="templates")
+
+CHALLENGE_PATHS = {
+    "hard-network": "Challenges/Hard_Challenge-Network/Hard_Challenge-Network",
+    "hard-forensic": "Challenges/Hard-Challenge-Forensic",
+    "middle-picky": "Challenges/Middle-Challenge-Web",
+    "middle-desc": "Challenges/Middle-Challenge"
+}
+
+PICKY_WEBSITE_PATH = os.path.abspath("Challenges/Middle-Challenge-Web/picky-website")
+
+DOCKER_COMMANDS = {
+    "hard-network": "docker run -d -p 3001:5000 --name hard-network my-image",
+    "hard-forensic": "docker run -d -p 3002:5000 --name hard-forensic my-image",
+    "middle-picky": f"docker run -d -p 3000:3000 --name picky-website -v {PICKY_WEBSITE_PATH}",
+    "middle-desc": "docker run -d -p 3004:5000 --name middle-desc my-image"
+}
+
+
 
 @app.route('/')
 def home():
-    """
-    Sert le fichier index.html depuis le dossier Frontend.
-    """
-    frontend_path = os.path.abspath("Frontend")  # Chemin absolu vers Frontend
-    print(f"Serving index.html from {frontend_path}")
-    return send_from_directory(frontend_path, 'index.html')
+    return render_template('home.html')
 
-@app.route('/assets/<path:filename>')
-def static_files(filename):
-    """
-    Sert les fichiers statiques (CSS, JS, images) depuis Frontend/assets.
-    """
-    assets_path = os.path.abspath("Frontend/assets")  # Chemin absolu vers les assets
-    print(f"Serving static file: {filename} from {assets_path}")
-    return send_from_directory(assets_path, filename)
+@app.route('/start/middle-picky', methods=['GET'])
+def start_picky_challenge():
+    # Redirige directement vers le port 3000 sans lancer Docker
+    return redirect("http://localhost:3000")
 
-@app.route('/challenges/<path:filename>')
-def serve_challenges(filename):
-    """
-    Sert les fichiers des challenges depuis le dossier Challenges.
-    """
-    challenges_path = os.path.abspath("Challenges")  # Chemin absolu vers Challenges
-    print(f"Serving challenge file: {filename} from {challenges_path}")
-    return send_from_directory(challenges_path, filename)
 
-if __name__ == '__main__':
-    # Lancer le serveur Flask
-    app.run(debug=True, host='0.0.0.0', port=5000)
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template("404.html"), 404
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)
