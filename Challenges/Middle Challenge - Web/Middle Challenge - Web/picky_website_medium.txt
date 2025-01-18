@@ -1,0 +1,40 @@
+Title:
+Picky Website
+
+Difficulty:
+Medium
+
+Description:
+Only a small set of people meet all the criteria to discover the secrets that this website holds.
+
+Hints:
+1. It's all about the headers.
+
+2.You don't have to really move to France, maybe you can just impersonate someone's IP ¯\_(ツ)_/¯
+
+3. What does James Bond and DuckDuckGo have in common? They are both an agent
+
+4. It's a deprecated header
+
+5. If you still haven't bought a timemachine, you can use Date
+
+Run instructions:
+Download the .tar archive
+docker load -i picky-website.tar
+docker run -p 3000:3000 picky-website
+You can access the app on localhost:3000
+
+Flag:
+goqi0YOy1m3KZ9Xbt6H4Q_picky_website_flag
+
+Solution:
+The user needs to use some tool like Burp Suite and add some special headers in the request to http://localhost:3000/message
+
+The needed headers are:
+
+User-Agent: Needs to contain "DuckDuckGo"
+Date: Any date from 2020. e.g. Mon, 04 Jan 2020
+DNT: 1
+X-Forwarded-For: Any IP from France e.g. 1.179.112.0
+Accept-Language: Any language that contains fr. e.g. fr-CA
+

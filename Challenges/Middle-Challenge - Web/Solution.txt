@@ -1,0 +1,21 @@
+
+// Perform XOR decryption on the data using the obscureProcess function.
+var a2 = obscureProcess(arr);
+
+// Convert the byte array into a corresponding string (each byte is interpreted as an ASCII character code).
+var hexStr = toStringFromBytes(a2);
+
+// Decode the hexadecimal string into a byte array.
+var b64Bytes = hexToBytes(hexStr);
+
+// Convert the byte array back into a string. At this point, the string represents Base64-encoded data.
+var b64Str = toStringFromBytes(b64Bytes);
+
+// Use the browser's built-in atob function to decode the Base64 string.
+var roted = base64Decode(b64Str);
+
+// Restore the original data using the ROT13 algorithm.
+var originalFlag = rot13(roted);
+
+// Output the restored FLAG.
+console.log(originalFlag);

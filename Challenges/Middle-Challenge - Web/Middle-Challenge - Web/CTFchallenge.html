@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Challenge</title>
+</head>
+<body>
+<h1>Welcome to the Web CTF Challenge</h1>
+<p>Analyze the page source and the JavaScript code to find the hidden FLAG.</p>
+
+<script>
+var arr = [111,111,110,111,108,110,111,110,108,111,105,106,109,106,109,99,108,104,105,107,105,99,111,107,111,104,105,107,110,63,108,108,111,111,110,98,111,108,109,111,108,111,111,98,108,57,109,99,111,99,111,98,111,104,109,99,108,108,111,107,105,62,105,62];
+
+function obscureProcess(a) {
+    var key = 0x5A;
+    for (var i = 0; i < a.length; i++) {
+        a[i] = a[i] ^ key;
+    }
+    return a;
+}
+
+function toStringFromBytes(a) {
+    var s = '';
+    for (var i = 0; i < a.length; i++) {
+        s += String.fromCharCode(a[i]);
+    }
+    return s;
+}
+
+function hexToBytes(hexstr) {
+    var bytes = [];
+    for (var i = 0; i < hexstr.length; i += 2) {
+        bytes.push(parseInt(hexstr.substr(i, 2), 16));
+    }
+    return bytes;
+}
+
+function base64Decode(str) {
+    return atob(str);
+}
+
+function rot13(str) {
+    return str.replace(/[a-zA-Z]/g, function(c) {
+        var code = c.charCodeAt(0);
+        var base = (code >= 97) ? 97 : 65;
+        return String.fromCharCode(((code - base + 13) % 26) + base);
+    });
+}
+</script>
+</body>
+</html>
