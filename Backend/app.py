@@ -1,42 +1,36 @@
-from flask import Flask, jsonify, request
-import subprocess
+import os
+from flask import Flask, send_from_directory
 
-app = Flask(__name__)
+# Initialisation de l'application Flask
+app = Flask(__name__, static_folder="Frontend/assets", static_url_path="/assets")
 
-# Liste des challenges (à compléter plus tard)
-CHALLENGES = {
-    "bank_heist": {"description": "Hack the bank using JWT vulnerabilities.", "port": 3001},
-    "picky_website": {"description": "Find the hidden flag using HTTP headers.", "port": 3002},
-    "forensic": {"description": "Analyze network packets to reconstruct the flag.", "port": 3003},
-    "web_ctf": {"description": "Solve the Web CTF challenge.", "port": 3004}
-}
+@app.route('/')
+def home():
+    """
+    Sert le fichier index.html depuis le dossier Frontend.
+    """
+    frontend_path = os.path.abspath("Frontend")  # Chemin absolu vers Frontend
+    print(f"Serving index.html from {frontend_path}")
+    return send_from_directory(frontend_path, 'index.html')
 
-@app.route('/challenges', methods=['GET'])
-def get_challenges():
-    """Retourne la liste des défis."""
-    return jsonify({"challenges": CHALLENGES})
+@app.route('/assets/<path:filename>')
+def static_files(filename):
+    """
+    Sert les fichiers statiques (CSS, JS, images) depuis Frontend/assets.
+    """
+    assets_path = os.path.abspath("Frontend/assets")  # Chemin absolu vers les assets
+    print(f"Serving static file: {filename} from {assets_path}")
+    return send_from_directory(assets_path, filename)
 
-@app.route('/start_challenge/<challenge_name>', methods=['POST'])
-def start_challenge(challenge_name):
-    """Démarre un défi spécifique."""
-    challenge = CHALLENGES.get(challenge_name)
-    if not challenge:
-        return jsonify({"error": "Challenge not found"}), 404
-
-    try:
-        # Simule le démarrage d'un défi
-        return jsonify({"message": f"Challenge {challenge_name} started on port {challenge['port']}!"})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/stop_all', methods=['POST'])
-def stop_all():
-    """Arrête tous les défis."""
-    try:
-        # Simule l'arrêt de tous les défis
-        return jsonify({"message": "All challenges stopped!"})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+@app.route('/challenges/<path:filename>')
+def serve_challenges(filename):
+    """
+    Sert les fichiers des challenges depuis le dossier Challenges.
+    """
+    challenges_path = os.path.abspath("Challenges")  # Chemin absolu vers Challenges
+    print(f"Serving challenge file: {filename} from {challenges_path}")
+    return send_from_directory(challenges_path, filename)
 
 if __name__ == '__main__':
+    # Lancer le serveur Flask
     app.run(debug=True, host='0.0.0.0', port=5000)
