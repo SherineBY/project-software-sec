@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Welcome to the Challenge Platform</h1>
-        <p>It is a training platform for cybersecurity challenges. The challenges are vulnerable sites with several
+        <p>It is a training platform for cybersecurity challenges. The challenges are sites with several
             issues to solve.</p>
     </header>
 
@@ -71,7 +71,7 @@
                 </li>
             </ul>
         </section>
-        <!-- Résultat du Challenge - Forensic -->
+        <!-- Résultat du Challenge - + lien du fichier tar de picky -->
         <section>
             <h3>result of the chalenges</h3>
             <h4 class="difficulty">Challenge result - Forensic</h4>
@@ -91,7 +91,12 @@
             <form action="/ctf-solution" method="get" style="display:inline;">
                 <button type="submit">display the solution</button>
             </form>
-
+            <h4 class="difficulty">Challenge files - Picky</h4>
+            <form action="/download/picky-challenge" method="get" style="display:inline;">
+                <button type="submit">download the tar file</button>
+            </form>
+            </div>
+            </div>
         </section>
     </main>
     <script>
@@ -103,6 +108,16 @@
             } else {
                 resultsSection.style.display = "none"; // Cacher les résultats
                 this.textContent = "Afficher les résultats"; // Changer le texte du bouton
+            }
+        });
+        document.getElementById("toggle-results-picky").addEventListener("click", function () {
+            const resultsSection = document.getElementById("results-section-picky");
+            if (resultsSection.style.display === "none") {
+                resultsSection.style.display = "block";
+                this.textContent = "Hide the results";
+            } else {
+                resultsSection.style.display = "none";
+                this.textContent = "Display the results";
             }
         });
     </script>

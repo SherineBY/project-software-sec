@@ -95,6 +95,15 @@ def picky_description():
     # Rendu direct du fichier HTML via Flask
     return render_template('picky_website_medium.html')
 
+@app.route("/download/picky-challenge", methods=['GET'])
+def download_picky_challenge():
+    try:
+        # Chemin complet vers le fichier .tar
+        picky_tar_path = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge-Web/picky-website.tar"
+        return send_file(picky_tar_path, as_attachment=True)
+    except FileNotFoundError:
+        return "The file picky-website.tar was not found.", 404
+
 WEB_CTF_PATH = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge/Middle-Challenge/webCTF.py"
 MIDDLE_CHALLENGE_PATH = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge/Middle-Challenge"
 
