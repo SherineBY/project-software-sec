@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picky Website Medium Description</title>
+    <link rel="stylesheet" href="/Frontend/Assets/styles.css">
+</head>
+
+<body>
+    <h1>Picky Website Medium Challenge</h1>
+    <li>Difficulty:
+        Medium<br>
+
+        Description:
+        Only a small set of people meet all the criteria to discover the secrets that this website holds.<br>
+
+        Hints:<br>
+        1. It's all about the headers.<br>
+
+        2.You don't have to really move to France, maybe you can just impersonate someone's IP ¯\_(ツ)_/¯<br>
+
+        3. What does James Bond and DuckDuckGo have in common? They are both an agent<br>
+
+        4. It's a deprecated header<br>
+
+        5. If you still haven't bought a timemachine, you can use Date<br>
+
+        Run instructions:<br>
+        Download the .tar archive<br>
+        docker load -i picky-website.tar<br>
+        docker run -p 3000:3000 picky-website<br>
+        You can access the app on localhost:3000<br>
+
+        Flag:<br>
+        goqi0YOy1m3KZ9Xbt6H4Q_picky_website_flag<br>
+
+        Solution:<br>
+        The user needs to use some tool like Burp Suite and add some special headers in the request to
+        http://localhost:3000/message <br>
+
+        The needed headers are:<br>
+
+        User-Agent: Needs to contain "DuckDuckGo"<br>
+        Date: Any date from 2020. e.g. Mon, 04 Jan 2020<br>
+        DNT: 1<br>
+        X-Forwarded-For: Any IP from France e.g. 1.179.112.0<br>
+        Accept-Language: Any language that contains fr. e.g. fr-CA
+
+    </li>
+</body>
+
+</html>

@@ -14,48 +14,93 @@
         <p>It is a training platform for cybersecurity challenges. The challenges are vulnerable sites with several
             issues to solve.</p>
     </header>
+
     <main>
         <h2>Available Challenges</h2>
-        <h3>Hard Difficulty</h3>
-        <ul>
-            <li>
-                Hard Challenge - Network:
-                <a
-                    href="/Challenges/Hard_Challenge-Network/Hard_Challenge-Network/Detailed-Solution.pdf">Description</a>
-                <form action="/start/hard-network" method="post" style="display:inline;">
-                    <button type="submit">Lancer le Challenge</button>
-                </form>
-            </li>
-            <li>
-                Hard Challenge - Forensic:
-                <a href="/Challenges/Hard-Chanllenge-Forensic/Hard-Chanllenge-Forensic/Description.txt">Description</a>
-                <form action="/start/hard-forensic" method="post" style="display:inline;">
-                    <button type="submit">Lancer le Challenge</button>
-                </form>
-            </li>
-        </ul>
-        <h3>Medium Difficulty</h3>
-        <ul>
+
+        <!-- Hard Difficulty Section -->
+        <section>
+            <h3>Hard Difficulty</h3>
             <ul>
                 <li>
-                    Middle Challenge - Picky Website:
-                    <a href="/Challenges/Middle-Challenge/Description.txt">Description</a>
-                    <form action="/start/middle-picky" style="display:inline;">
-                        <button type="submit">Lancer le Challenge</button>
+                    Hard Challenge - Network:
+                    <form action="/picky-description" method="get" style="display:inline;">
+                        <button type="submit">Description</button>
+                    </form>
+                    <form action="/start/hard-network" method="post" style="display:inline;">
+                        <button type="submit">Launch the Challenge</button>
+                    </form>
+                </li>
+                <li>
+                    Hard Challenge - Forensic:
+                    <form action="/forensic-description" method="get" style="display:inline;">
+                        <button type="submit">Description</button>
+                    </form>
+                    <form action="/start/hard-forensic" method="post" style="display:inline;">
+                        <button type="submit">Launch the Challenge</button>
                     </form>
                 </li>
             </ul>
 
 
-            <li>
-                Middle Challenge - Website:
-                <a href="/Challenges/Middle-Challenge/Description.txt">Description</a>
-                <form action="/start/middle-desc" method="post" style="display:inline;">
-                    <button type="submit">Lancer le Challenge</button>
-                </form>
-            </li>
-        </ul>
+
+        </section>
+
+        <!-- Medium Difficulty Section -->
+        <section>
+            <h3>Medium Difficulty</h3>
+            <ul>
+                <li>
+                    Middle Challenge - Picky Website:
+                    <form action="/picky-description" method="get" style="display:inline;">
+                        <button type="submit">Description</button>
+                    </form>
+                    <form action="/start/middle-picky" style="display:inline;">
+                        <button type="submit">Launch the Challenge</button>
+                    </form>
+                </li>
+                <li>
+                    Middle Challenge - Website:
+                    <form action="/picky-description" method="get" style="display:inline;">
+                        <button type="submit">Description</button>
+                    </form>
+                    <form action="/start/middle-desc" method="post" style="display:inline;">
+                        <button type="submit">Launch the Challenge</button>
+                    </form>
+                </li>
+            </ul>
+        </section>
+        <!-- Résultat du Challenge - Forensic -->
+        <section>
+            <h3>result of the chalenges</h3>
+            <h4 class="difficulty">Challenge result - Forensic</h4>
+            <button id="toggle-results" class="btn">display the results</button>
+            <div id="results-section"
+                style="display: none; margin-top: 10px; border: 1px solid #ccc; padding: 15px; border-radius: 5px;">
+                <h4>Challenge successfully generated</h4>
+                <p>The generated file is ready:</p>
+                <div class="actions">
+                    <a href="/Challenges/Hard-Chanllenge-Forensic/challenge.png" target="_blank"
+                        class="btn btn-primary">see the file</a>
+                    <a href="/Challenges/Hard-Chanllenge-Forensic/challenge.png" download="challenge.png"
+                        class="btn">download</a>
+                </div>
+            </div>
+        </section>
     </main>
+    <script>
+        document.getElementById("toggle-results").addEventListener("click", function () {
+            const resultsSection = document.getElementById("results-section");
+            if (resultsSection.style.display === "none") {
+                resultsSection.style.display = "block"; // Afficher les résultats
+                this.textContent = "Masquer les résultats"; // Changer le texte du bouton
+            } else {
+                resultsSection.style.display = "none"; // Cacher les résultats
+                this.textContent = "Afficher les résultats"; // Changer le texte du bouton
+            }
+        });
+    </script>
+
 </body>
 
 </html>

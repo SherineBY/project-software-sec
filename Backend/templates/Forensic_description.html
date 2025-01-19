@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic website hard Description</title>
+    <link rel="stylesheet" href="/Frontend/Assets/styles.css">
+</head>
+
+<body>
+    <h1>Forensic website hard chalenges</h1>
+    <li>Difficulty:
+        Hard<br>
+        <br>
+        Platform : Windows 11<br>
+        IDE : PyCharm<br>
+        Python : 3.10<br>
+        Python interpreter : Anaconda 3<br>
+        <br>
+        Execution Instructions:<br>
+        There is a picture named `original.png` in the project files.<br>
+        After running `challenge.py`, a new picture `challenge.png` will be generated.<br>
+        Give `challenge.png` to the challenger and ask them to find the hidden secret in the image.<br>
+        <br>
+        **Solution Steps:**<br>
+        1. **Open the image and retrieve the pixels**<br>
+        - Convert the image to RGB mode and iterate through all the R, G, B channels of the pixels.<br>
+        2. **Extract the least significant bits (LSB)**<br>
+        - Perform the `& 1` operation on each channel to get the corresponding bit (0 or 1) and concatenate them into a
+        long binary string.<br>
+        3. **Reconstruct the text**<br>
+        - Divide the binary string into 8-bit segments, convert each segment to an ASCII character, and concatenate them
+        into a string.<br>
+        4. **Cut off the terminator**<br>
+        - When the predefined terminator (e.g., `###EOF###`) is detected, discard the content after it to obtain the
+        final hidden message.<br>
+        For details, see the `solution.py` file.<br>
+
+    </li>
+</body>
+
+</html>

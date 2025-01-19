@@ -44,3 +44,72 @@ a:hover {
 .button:hover {
     background-color: #0056b3;
 }
+
+/* boite a alerte resultat forensic 
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+.alert-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.alert .btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background: #0078d7;
+    transition: background 0.3s ease;
+    margin-right: 5px;
+}
+
+.alert .btn:hover {
+    background: #005ea2;
+}
+
+.alert .btn-primary {
+    background: #28a745;
+}
+
+.alert .btn-primary:hover {
+    background: #218838;
+}*/
+
+#toggle-results {
+    background: #0078d7;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: background 0.3s ease;
+}
+
+#toggle-results:hover {
+    background: #005ea2;
+}
+
+#results-section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.actions .btn {
+    margin-right: 10px;
+}

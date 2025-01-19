@@ -1,0 +1,2 @@
+Pour lancer l'image docker via le bouton lancer le chalenge du site il faut avoir docker d'installé sur la machine et telecharger le fichier  et
+avec l'invite de commande lancer : docker load -i "chemin du fichier/picky-website.tar" et ensuite docker run -p 3000:3000 picky-website
