@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, abort
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, abort, send_file
 import os
 import subprocess
 
@@ -65,7 +65,25 @@ def forensic_description():
     # Rendu direct du fichier HTML via Flask
     return render_template('Forensic_description.html')
 
-       
+@app.route('/download/hard-challenge-network', methods=['GET'])
+def download_hard_challenge():
+    # Chemin absolu du fichier zip
+    zip_path = r"C:\Users\sheri\Documents\GitHub\project-software-sec\Challenges\Hard_Challenge-Network.zip"
+    try:
+        return send_file(zip_path, as_attachment=True)
+    except FileNotFoundError:
+        return "Le fichier n'existe pas.", 404
+
+
+@app.route("/network-solution", methods=['GET'])
+def network_solution():
+    try:
+        # Sert le fichier "Detailed-Solution.pdf" depuis le dossier "templates"
+        return send_from_directory(directory="templates", filename="Detailed-Solution.pdf")
+    except FileNotFoundError:
+        return "Le fichier Detailed-Solution.pdf est introuvable.", 404  
+
+#medium challenges       
 @app.route('/start/middle-picky', methods=['GET'])
 def start_picky_challenge():
     # Redirige directement vers le port 3000 sans lancer Docker
