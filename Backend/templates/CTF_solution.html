@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF website solution</title>
+    <link rel="stylesheet" href="/Frontend/Assets/styles.css">
+</head>
+
+<body>
+    <h1>CTF website Medium chalenges</h1>
+    <li>Difficulty:
+        Medium<br>
+        <br>
+
+        // Perform XOR decryption on the data using the obscureProcess function.<br>
+        var a2 = obscureProcess(arr);<br>
+        <br>
+        // Convert the byte array into a corresponding string (each byte is interpreted as an ASCII character code).<br>
+        var hexStr = toStringFromBytes(a2);<br>
+        <br>
+        // Decode the hexadecimal string into a byte array.<br>
+        var b64Bytes = hexToBytes(hexStr);<br>
+        <br>
+        // Convert the byte array back into a string. At this point, the string represents Base64-encoded data.<br>
+        var b64Str = toStringFromBytes(b64Bytes);<br>
+        <br>
+        // Use the browser's built-in atob function to decode the Base64 string.<br>
+        var roted = base64Decode(b64Str);<br>
+        <br>
+        // Restore the original data using the ROT13 algorithm.<br>
+        var originalFlag = rot13(roted);<br>
+
+        // Output the restored FLAG.<br>
+        console.log(originalFlag);<br>
+
+    </li>
+</body>
+
+</html>

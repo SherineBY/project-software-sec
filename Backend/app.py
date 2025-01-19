@@ -77,11 +77,47 @@ def picky_description():
     # Rendu direct du fichier HTML via Flask
     return render_template('picky_website_medium.html')
 
+WEB_CTF_PATH = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge/Middle-Challenge/webCTF.py"
+MIDDLE_CHALLENGE_PATH = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge/Middle-Challenge"
 
+@app.route('/web-ctf-challenge')
+def serve_web_ctf():
+    try:
+        # Sert le fichier CTFchallenge.html
+        return send_from_directory(
+            directory=MIDDLE_CHALLENGE_PATH,
+            filename="CTFchallenge.html"
+        )
+    except FileNotFoundError:
+        return "Le fichier CTFchallenge.html n'a pas été trouvé.", 404
+    
+import subprocess
+
+WEB_CTF_PATH = "C:/Users/sheri/Documents/GitHub/project-software-sec/Challenges/Middle-Challenge/Middle-Challenge/webCTF.py"
+
+@app.route('/start/web-ctf', methods=['POST'])
+def start_web_ctf():
+    try:
+        # Exécute le script webCTF.py
+        subprocess.run(["python", WEB_CTF_PATH], check=True)
+
+        # Redirige vers la route qui sert le fichier
+        return redirect("/web-ctf-challenge")
+    except subprocess.CalledProcessError as e:
+        return f"Erreur lors du lancement du challenge Web CTF : {e}", 500
+
+@app.route('/ctf-description', methods=['GET'])
+def ctf_description():
+    # Rendu direct du fichier HTML via Flask
+    return render_template('CTF_description.html')
 
 @app.errorhandler(404)
 def not_found(error):
     return render_template("404.html"), 404
+
+@app.route("/ctf-solution", methods=['GET'])
+def ctf_solution():
+    return render_template("CTF_solution.html")
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
